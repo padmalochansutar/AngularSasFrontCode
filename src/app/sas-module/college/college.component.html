@@ -1,0 +1,61 @@
+<div>
+  <app-header></app-header>
+
+<div style="text-align:justify">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXJr4ub304E9EzKD3h4VLmjF0RM3vRvHPcbg&usqp=CAU" alt="">
+  </div>
+  <div style="background-color: gainsboro;">
+<div class="container" align="center">
+  <h1 style="color: rgb(0, 128, 6);"><b>  COLLEGE  ADD HERE!!</b></h1>
+</div>
+<div class="container"  style="background-color: mintcream">
+  <form [formGroup]="form" (ngSubmit)="collegeRegister()">
+  <div class="row">
+    <div class="form-group col-md-4">
+      <select  id="college" class="form-control" formControlName="collegeId" #myselect>
+            <option value="null">--Select--</option>
+            <ng-container *ngFor="let item of collegeList;index as i">
+              <option [value]="item.collegeId">{{item.collegeName}}</option>
+            </ng-container>
+          </select>
+    </div>
+    <div class="col-md-6- col-lg-3 align-self-end">
+      <div class="form-group">
+        <button class="btn btn-primary" type="button" (click)="addMore()">Add More</button>
+      </div>
+    </div>
+    <div class="col-md-6- col-lg-3 align-self-end">
+      <div class="form-group">
+        <button class="btn btn-primary" type="button" (click)="option()">{{option1}}stoption</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <table class="table table-bordered">
+      <thead  class="thead-light">
+        <th>Sl# No.</th>
+        <th>CollegeName</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of tempArray;index as i">
+          <td>{{i+1}}</td>
+          <td>{{item.collegeName}}</td>
+
+        </tr>
+      </tbody>
+    </table>
+  </div> <div class="row" align="center">
+    <div class="form-group col-md-12">
+      <button type="submit" class="btn btn-primary">Save</button>&nbsp;<button type="reset"
+        class="btn btn-danger">RESET</button>&nbsp;
+        <button class="btn btn-success" type="button" (click)="nextPage()">Next</button>
+    </div>
+
+
+
+  </div>
+</form>
+</div>
+</div>
+</div>

@@ -1,0 +1,75 @@
+<div>
+  <app-header></app-header>
+<!-- <div class="form-group col-md-13">
+  <h1 ><span style="color: darkred; float: right;">* {{name}}</span></h1><br>
+  </div> -->
+<div style="text-align:justify">
+  <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXJr4ub304E9EzKD3h4VLmjF0RM3vRvHPcbg&usqp=CAU" alt="">
+</div>
+<div style="background-color: gainsboro;">
+  <div class="container" style="text-align: center;">
+    <h1 style="color: rgb(0, 128, 6);"><b>PAYMENT HERE!!</b></h1>
+  </div>
+  <div class="container">
+    <form [formGroup]="form" (ngSubmit)="payment()">
+      <div class="row">
+        <div class="form-group col-md-6">
+          <label for="Cast" class="control-label" style="color: darkred;">
+            <h3>CAST</h3>
+          </label><span style="color: darkred;">*</span>
+          <select name="cast" id="cast" class="form-control" formControlName="castId" #myselect
+            (change)='onPaymentSelect($event.target)'>
+            <option value="null">--Select--</option>
+            <ng-container *ngFor="let item of castList">
+              <option [value]="item.castId">{{item.castName}}</option>
+            </ng-container>
+          </select>
+        </div>
+        <div class="form-group col-md-6">
+          <label for="Payment" class="control-label" style="color: darkred;">
+            <h3>FEES</h3>
+          </label><span style="color: darkred;">*</span>
+
+          <input type="text" name="payment" id="payment" class="form-control" formControlName="paymentId">
+          <!-- <option value="null">--Select--</option>
+        <ng-container *ngFor="let item1 of paymentList;index as i">
+          <option>{{item1.fee}}</option>
+        </ng-container>-->
+
+        </div>
+      </div>
+      <div class="row">
+      <div class="form-group col-md-6">
+        <label for="Cast" class="control-label" style="color: darkred;">
+          <h3>ACCOUNT NUMBER</h3>
+        </label><span style="color: darkred;">*</span>
+        <input type="text" id="Account" class="form-control" [value]="acList" formControlName="accountNo">
+      </div>
+      <div class="form-group col-md-6">
+        <label for="Cast" class="control-label" style="color: darkred;">
+          <h3>ENTER ACCOUNT NUMBER</h3>
+        </label><span style="color: darkred;">*</span>
+
+        <input type="text" id="AccountNumber" class="form-control"  (blur) = onBlur() formControlName="accountNumber">
+         <h1 style="color: darkred;">{{accountHolName}}</h1>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-6">
+        <label for="Cast" class="control-label" style="color: darkred;">
+          <h3>PAYMENT</h3>
+        </label><span style="color: darkred;">*</span>
+        <input type="text" id="payment" class="form-control" formControlName="paymentFee">
+      </div>
+    </div>
+    <div class="row" align="center">
+      <div class="form-group col-md-13" >
+         <button type="submit" class="btn btn-primary">PROCEE</button>&nbsp;<button type="reset"
+      class="btn btn-danger">RESET</button>&nbsp;<button class="btn btn-success" type="button" (click)="viewPage()">VIEW</button>
+      </div>
+      </div>
+
+    </form>
+
+  </div>
+</div>

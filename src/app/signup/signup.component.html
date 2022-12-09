@@ -1,0 +1,38 @@
+
+<body class="background-attachment: fixed;" style="background-image: url('https://psmag.com/.image/t_share/MTUwMjg0NDIxMTE3NzgyMDEy/college-2.jpg');height: 1200px; width: 1499px;">
+
+<div class="wrapper" style="background: seashell;">
+
+  <div class="mx-auto" style="width: 230px;" >
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTzDvJl_Taa_jU2Y48dcRcnwU9GZH57Q6eHQg&usqp=CAU" alt="">
+  </div>
+
+  <div class="text-center mt-4 name">
+       Here! Sign Up
+  </div>
+  <form class="p-1 mt-1" [formGroup]="studentSignIn" (ngSubmit)="onSubmit()">
+      <div class="form-field d-flex align-items-center">
+          <span class="far fa-user"></span>
+          <input type="text" name="userName" id="userName" placeholder="Username" formControlName="userName">
+      </div>
+      <div class="form-field d-flex align-items-center">
+        <span class="far fa-user"></span>+91
+        <input type="text" name="mobileNo" id="mobileNo" placeholder="Mobile Number" formControlName="mobileNo">
+    </div>
+      <div class="form-field d-flex align-items-center">
+        <span class="far fa-user"></span>
+        <input type="email" name="emailId" id="emailId" placeholder="Email" formControlName="emailId">
+    </div>
+
+      <div class="form-field d-flex align-items-center">
+          <span class="fas fa-key"></span>
+          <input type="password" name="password" id="password" placeholder="Password" formControlName="password">
+      </div>
+      <button class="btn mt-3">SignUp</button>
+  </form>
+  <div class="text-center fs-6">
+      <a href="./signin" style="text-decoration: underline;">Sign In</a> or <a href="" style="text-decoration: underline;">Sign Up</a>
+  </div>
+</div>
+</body>
+

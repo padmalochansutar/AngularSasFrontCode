@@ -1,0 +1,257 @@
+<!-- <app-header></app-header> -->
+<!-- <div class="form-group col-md-13">
+<h1 ><span style="color: darkred; float: right;">* {{name}}</span></h1><br>
+</div> -->
+<div>
+<app-header></app-header>
+<div>
+<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXJr4ub304E9EzKD3h4VLmjF0RM3vRvHPcbg&usqp=CAU" alt="">
+
+</div>
+<div class="container" align="center">
+  <h1 style="color: maroon;"><b>STUDENT REGISTATION FORM</b></h1>
+</div>
+<div class="container " style="background-color: mintcream">
+  <div class="container" style="border: 2px black;">
+    <form [formGroup]="form" (ngSubmit)="register()">
+      <div class="row">
+        <div class="form-group col-md-4">
+          <label style="color: darkred;">
+            <h3>USER NAME:</h3>
+          </label><span style="color: darkred;">*</span><br>
+          <!-- <mat-form-field class="example-full-width" appearance="fill">
+            <mat-label>Favorite food</mat-label>
+            <input matInput placeholder="Ex. Pizza" value="Sushi">
+          </mat-form-field> -->
+          <input type="text" name="userName" id="userName" placeholder="User Name" formControlName="userName"  maxlength="100"
+          onkeypress='return (event.charCode > 96 && event.charCode < 123) || (event.charCode > 64 && event.charCode < 91) || (event.charCode > 39 && event.charCode < 42) || (event.charCode == 45) || event.charCode ==32'
+          (keyup)="keyFunc1($event.target)">
+          <small class="text-danger">
+            <span
+              *ngIf="!form.get('userName')?.valid   && form.get('userName')?.touched && form.get('userName')?.errors?.['required']">
+              <strong> Please Enter User Name</strong>
+            </span>
+            <span
+              *ngIf="submitFlag && !form.get('userName')?.touched && form.get('userName')?.value == null">
+              <strong>Please Enter User Name</strong>
+            </span>
+          </small>
+        </div>
+        <div class="form-group col-md-4">
+          <label style="color: darkred;">
+            <h3>FATHER NAME:</h3>
+          </label><span style="color: darkred;">*</span><br>
+          <input type="text" name="fatherName" id="fatherName" placeholder="Father Name" formControlName="fatherName" maxlength="100"
+          onkeypress='return (event.charCode > 96 && event.charCode < 123) || (event.charCode > 64 && event.charCode < 91) || (event.charCode > 39 && event.charCode < 42) || (event.charCode == 45) || event.charCode ==32'
+          (keyup)="keyFunc1($event.target)">
+          <small class="text-danger">
+            <span
+              *ngIf="!form.get('fatherName')?.valid   && form.get('fatherName')?.touched && form.get('fatherName')?.errors?.['required']">
+              <strong> Please Enter Father Name</strong>
+            </span>
+            <span
+              *ngIf="submitFlag && !form.get('fatherName')?.touched && form.get('fatherName')?.value == null">
+              <strong>Please Enter Father Name</strong>
+            </span>
+          </small>
+        </div>
+        <div class="form-group col-md-4">
+          <label style="color: darkred;">
+            <h3>MOTHER NAME:</h3>
+          </label><span style="color: darkred;">*</span><br>
+          <input type="text" name="motherName" id="motherName" placeholder="Mother Name" formControlName="motherName" maxlength="100"
+          onkeypress='return (event.charCode > 96 && event.charCode < 123) || (event.charCode > 64 && event.charCode < 91) || (event.charCode > 39 && event.charCode < 42) || (event.charCode == 45) || event.charCode ==32'
+          (keyup)="keyFunc1($event.target)">
+          <small class="text-danger">
+            <span
+              *ngIf="!form.get('motherName')?.valid   && form.get('motherName')?.touched && form.get('motherName')?.errors?.['required']">
+              <strong> Please Enter Mother Name</strong>
+            </span>
+            <span
+              *ngIf="submitFlag && !form.get('motherName')?.touched && form.get('motherName')?.value == null">
+              <strong>Please Enter Mother Name</strong>
+            </span>
+          </small>
+        </div>
+      </div>
+      <div class="row">
+        <div class="form-group col-md-4">
+          <label style="color: darkred;">
+            <h3>DATE OF BIRTH:</h3>
+          </label><span style="color: darkred;">*</span><br>
+          <!-- <input type="date" name="dob" id="dob" placeholder="date-of-birth" formControlName="dob"> -->
+          <mat-form-field appearance="outline">
+            <mat-label>MM/DD/YYYY</mat-label>
+            <input matInput [matDatepicker]="picker" formControlName="dob">
+
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+          </mat-form-field>
+
+          <!-- <input type="text" name="dob" id="dob" class="form-control" bsDatepicker [bsConfig]="{ isAnimated: true } "  formControlName="dob"
+    id="notiDate">
+    <div class="input-group-append">
+      <label class="input-group-text" for="notiDate">
+          <i class="fa fa-calendar-o"></i>
+      </label>
+  </div> -->
+        </div>
+
+
+        <div class="form-group col-md-4">
+          <label style="color: darkred;">
+            <h3>GENDER:</h3>
+          </label><span style="color: darkred;">*</span> <br>
+          <input type="radio" name="gender" id="gender" value="Male" formControlName="gender">Male
+          <input type="radio" name="gender" id="gender" value="Female" formControlName="gender">Female
+          <input type="radio" name="gender" id="gender" value="Other" formControlName="gender">Other
+        </div>
+        <div class="form-group col-md-4">
+          <label style="color: darkred;">
+            <h3>STREAM:</h3>
+          </label><span style="color: darkred;">*</span> <br>
+          <ng-container *ngFor="let li of streamList">
+            <input type="radio" formControlName="course" [value]="li.eduId" (change)="handleChange()"
+              #myselect>{{li.stream}}
+          </ng-container>
+          <!-- <input type="radio" name="course" id="Science" value="Science" formControlName="course" (change)="handleChange($event)" #myselect>Science
+      <input type="radio" name="course" id="Commerce" value="Commerce" formControlName="course"(change)="handleChange($event)" #myselect>Commerce
+      <input type="radio" name="course" id="Arts" value="Arts" formControlName="course" (change)="handleChange($event)" #myselect>Arts -->
+        </div>
+        <div class="row">
+          <div class="col-md-4">
+            <div class="form-group">
+              <label style="color: darkred;">
+                <h3>SUBJECT</h3>
+              </label><span style="color: darkred;">*</span>
+              <ng-multiselect-dropdown [settings]="dropdownSettings" [data]="courseList" id="edu"
+                formControlName="eduObj" [placeholder]="'--Select--'">
+              </ng-multiselect-dropdown>
+            </div>
+          </div>
+          <div class="form-group col-md-4">
+            <label style="color: darkred;">
+              <h3>STATE:</h3>
+            </label><span style="color: darkred;">*</span><br>
+            <input type="text" name="state" id="state" placeholder="State Name" formControlName="state"  maxlength="100"
+            onkeypress='return (event.charCode > 96 && event.charCode < 123) || (event.charCode > 64 && event.charCode < 91) || (event.charCode > 39 && event.charCode < 42) || (event.charCode == 45) || event.charCode ==32'
+            (keyup)="keyFunc1($event.target)">
+            <small class="text-danger">
+              <span
+                *ngIf="!form.get('state')?.valid   && form.get('state')?.touched && form.get('state')?.errors?.['required']">
+                <strong> Please Enter State Name</strong>
+              </span>
+              <span
+                *ngIf="submitFlag && !form.get('state')?.touched && form.get('state')?.value == null">
+                <strong>Please Enter State Name</strong>
+              </span>
+            </small>
+          </div>
+          <div class="form-group col-md-4">
+            <label style="color: darkred;"><h3>PHOTO UPLOAD:</h3> </label><span style="color: darkred;">*</span>
+            <table [border]="'1px solid'" style="width:180px;height:180px;">
+              <tr>
+                <ng-container *ngIf="imagePath==null  ; else elseBlock">
+                  <img class="img-thumbnail" style="height: 150px;width:100%;"
+                    src="data:image/jpeg;base64,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"
+                    alt="DemoImage">
+                </ng-container>
+                <!-- <ng-template #elseBlock><img style="height: 160px;width:100%;" [src]="'data:image/jpg;base64,'+imagePath"/></ng-template> -->
+                <ng-template #elseBlock><img class="img-thumbnail" style="height: 150px;width:100%;" [src]="imagePath" alt="ProfileImage" />
+                </ng-template>
+              </tr>
+              <tr>
+                <div class="form-group" >
+                  <input formControlName="file1" id="file" type="file" class="form-control" (change)="onFileChange($event)"
+                    accept=".jpg,.jpeg,.png">
+                </div>
+              </tr>
+            </table>
+          </div>
+
+        </div>
+        <!-- <div class="row">
+   <div class="form-group">
+    <label class="col-md-4 control-label" for="rolename">Role Name</label>
+    <div class="col-md-4">
+        <select id="dates-field2" class="multiselect-ui form-control" multiple="multiple">
+            <option value="cheese">Cheese</option>
+            <option value="tomatoes">Tomatoes</option>
+            <option value="mozarella">Mozzarella</option>
+            <option value="mushrooms">Mushrooms</option>
+            <option value="pepperoni">Pepperoni</option>
+            <option value="onions">Onions</option>
+        </select>
+    </div>
+</div> -->
+      </div> &nbsp;&nbsp;
+      <div class="row">
+        <div class="form-group col-md-4">
+          <label for="district" class="control-label" style="color: darkred;">
+            <h3>DISTRICT</h3>
+          </label><span style="color: darkred;">*</span>
+          <select name="district" id="district" class="form-control" formControlName="districtId" #myselect
+            (change)='onDistrictSelect($event.target)'>
+            <option value="null">--Select--</option>
+            <ng-container *ngFor="let item of distList;index as i">
+              <option [value]="item.districtId">{{item.districtName}}</option>
+            </ng-container>
+          </select>
+        </div>
+        <div class="form-group col-md-4">
+          <label for="district" class="control-label" style="color: darkred;">
+            <h3>BLOCK</h3>
+          </label><span style="color: darkred;">*</span>
+          <select name="district" id="blockId" class="form-control" formControlName="blockId" #myselect
+            (change)='onBlockSelect($event.target)'>
+            <option value="null">--Select--</option>
+            <ng-container *ngFor="let item1 of blockList;index as i">
+              <option [value]="item1.blockId">{{item1.blockName}}</option>
+            </ng-container>
+          </select>
+        </div>
+        <!-- <div class="form-group col-md-4">
+     <label style="color: darkred;"><h3>DISTRICT:</h3></label><span style="color: darkred;">*</span><br>
+     <select *ngFor="let dist of distList">
+      <option  [ngValue]="dist">{{dist.distName}}</option>
+     </select>
+  </div> -->
+        <div class="form-group col-md-4">
+          <label for="village" class="control-label" style="color: darkred;">
+            <h3>VILLAGE</h3>
+          </label><span style="color: darkred;">*</span>
+          <select name="village" id="village" class="form-control" formControlName="villageObj" #myselect>
+            <option value="null">--Select--</option>
+            <ng-container *ngFor="let item2 of villageList;index as i">
+              <option [value]="item2.villageId">{{item2.villageName}}</option>
+            </ng-container>
+          </select>
+        </div>
+      </div>&nbsp;
+
+      <div class="row">
+
+          <div class="form-group col-md-4">
+            <label style="color: darkred;"><h3>DOCUMENT UPLOAD:</h3> </label><span style="color: darkred;">*</span>
+
+
+            <input type="file" name="pic" id="pic" placeholder="choose photo" formControlName="file" (change)="onSelectFile($event)">
+          </div>
+
+
+
+
+      </div>
+
+
+
+      <div class="row" align="center">
+        <div class="form-group col-md-12">
+          <button type="submit" class="btn btn-primary">REGISTER</button>&nbsp;<button type="reset"
+            class="btn btn-danger">RESET</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+</div>

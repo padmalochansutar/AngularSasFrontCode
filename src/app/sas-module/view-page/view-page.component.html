@@ -1,0 +1,115 @@
+<div>
+  <app-header></app-header>
+  <div class="table-utilities">
+    <button class="btn btn-danger btn-sm ml-auto " tooltip="PDF" (click)="downloadAsPDF()">
+        <i class="fa fa-file-pdf-o"></i>
+    </button>
+     <button class="btn btn-success btn-sm mx-1" tooltip="Excel" (click)="downloadAsExcel()">
+        <i class="fa fa-file-excel-o"></i>
+    </button>
+    <button class="btn btn-primary btn-sm" tooltip="Print" (click)="printReceipt()">
+        <i class="fa fa-print"></i>
+    </button>
+    <!-- <gc-spread-sheets [backColor]=”spreadBackColor” [hostStyle]="hostStyle" (workbookInitialized)="workbookInit($event)">
+    </gc-spread-sheets> -->
+</div>
+
+<div class="container" id="PrintIt">
+ <table class="table table-bordered">
+<thead class="thead-light">
+  <th>SL NO#</th>
+  <th>REGISTER ID</th>
+  <th>USER NAME</th>
+  <th>FATHER NAME</th>
+  <th>MOTHER NAME</th>
+  <th>DATE OF BIRTH</th>
+  <th>GENDER</th>
+  <th>STREAM</th>
+  <th>COURSE</th>
+  <th>STATE</th>
+  <th>PHOTO</th>
+  <th>DOCUMENT</th>
+  <th>DISTRICT</th>
+  <th>BLOCK</th>
+  <th>VILLAGE</th>
+  <!-- <th>COLLEGE</th> -->
+  <th>CAST</th>
+  <th>PAYMENT</th>
+  <th>ACTION</th>
+</thead>
+<tbody>
+  <ng-container *ngFor="let item of temp1 ;index as i" >
+    <tr>
+    <td>{{i+1}}</td>
+    <td>{{item.register.registerId}}
+    <td>{{item.register.userName}}</td>
+    <td>{{item.register.fname}}</td>
+    <td>{{item.register.mname}}</td>
+    <td>{{item.register.dob}}</td>
+    <td>{{item.register.gender}}</td>
+    <td>{{item.register.edu[0].education.stream}}</td>
+    <td><p *ngFor="let item of item.register.edu">{{item.courseName}}</p></td>
+    <td>{{item.register.state}}</td>
+    <td>{{item.register.file1}}</td>
+    <!-- <td>{{item.register.file}}</td> -->
+    <td>
+      <a  class="list-group-item list-group-item-action" (click)="downloadFile(item.register.registerId)" >{{item.register.file}}</a>
+  </td>
+    <td>{{item.register.district.districtName}}</td>
+    <td>{{item.register.block.blockName}}</td>
+    <td>{{item.register.village.villageName}}</td>
+    <!-- <td>{{item.register.village.villageName}}</td> -->
+    <td>{{item.cast.castName}}</td>
+    <td>{{item.payment}}</td>
+    <head>
+
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      </head>
+    <!-- <button  (click)="updateEmployee(item)" class="btn btn-primary" ><i style="font-size:25px;color: rgb(12, 230, 45) " class="fa">&#xf040;</i> </button>&nbsp;
+    <head><link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"> -->
+      <!-- <style type="text/css">
+      .material-icons.md-48 { font-size: 25px;color: rgb(255, 0, 0) }
+      </style> -->
+
+     <button (click)="delStudent(item.register.registerId)" class="btn btn-danger"><i  style="font-size:22px;color: rgb(255, 0, 0) " class="material-icons md-48">delete</i></button>&nbsp;
+     <head>
+
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      </head>
+     <button  (click)="viewEmployee()" class="btn btn-dark"><i style="font-size:25px;color: rgb(0, 119, 255);" class="fa">&#xf06e;</i></button>
+
+</tr>
+  </ng-container>
+
+</tbody>
+
+</table>
+</div>
+
+<div class="row" *ngIf="showPegi">
+  <div class="col-sm-4" align="center">
+  Showing {{ (currentPage - 1) * pageElement + 1 }}  to {{elementTo}}of {{record1}} (total records {{viewList.length }})
+  </div>
+  <div class="col-sm-8 text-right">
+      <pagination-controls  id="listing_pagination" [maxSize]="10" [directionLinks]="true" (pageChange)="pageChange($event)"></pagination-controls>
+      <div class="col-sm-*">
+          show
+      <select id="pageItem" name="pageItem" class="custom-select-sm "  (change)="pageItemChange()">
+          <option value="15">15</option>
+          <option value="30">30</option>
+          <option value="45">45</option>
+          <option value="60">60</option>
+      </select>
+      entries
+      </div>
+
+  </div>
+</div>
+
+<div class=" col-sm-12 text-center" *ngIf="!showPegi">
+  <span style="color: red;"><Strong>No Record Found !</Strong></span>
+</div>
+
+</div>

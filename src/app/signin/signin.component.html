@@ -1,0 +1,74 @@
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<body >
+
+  <div class="wrapper "  >
+
+  <div class="logo">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ3eB36BPmbt7lykB_YI6Kvy5npq9zqUab6NPD2UC6Wtg&s" alt="" >
+  </div>
+  <div class="text-center mt-1 name">
+       Student Portal
+  </div>
+  <form class="" [formGroup]="student">
+
+      <div class="form-field d-flex align-items-center">
+        <i class='fas fa-id-card'></i>
+          <input type="text" name="userName" id="userName" placeholder="Username" formControlName="userName">
+      </div>
+      <div class="form-field d-flex align-items-center">
+          <i class="fas fa-key"></i>
+          <input type="password" name="password" id="password" placeholder="Password" formControlName="password">
+      </div>
+
+
+      <div class="form-field d-flex align-items-center">
+
+
+          <!-- <input class="form-control pl-0" type="text" placeholder="Enter Captcha" id="txtLoginCaptcha"
+            [ngClass]="{ 'is-invalid': inValidCaptcha}"onselectstart="return false" onpaste="return false;"
+            onCopy="return false" onCut="return false" onDrag="return false" onDrop="return false"  autocomplete=off /> -->
+            <input class="form-control pl-0" type="text" placeholder="Enter Captcha" id="txtLoginCaptcha"
+            [ngClass]="{ 'is-invalid': inValidCaptcha}" autocomplete=off />
+
+           <div *ngIf="inValidCaptcha" class="invalid-feedback">
+            <div *ngIf="inValidCaptcha" style="color: red;">Incorrect Captcha</div>
+          </div>
+
+        </div>
+
+        <div class="form-field d-flex align-items-center">
+            <div class="col-10" id="loginCaptchaImg">
+              <!-- <img src="../../../assets/img/captcha.PNG"> -->
+            </div>
+            <div class="col-2"><a href="javascript:;" class="captcharefresh" id="loginRefreshCaptcha"><i class="fa fa-refresh"></i></a></div>
+      </div>
+      <div class="row mb-4">
+        <div class="col d-flex justify-content-center">
+          <!-- Checkbox -->
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="form2Example31" />
+            <label class="form-check-label" for="form2Example31"> Remember me </label>
+          </div>
+        </div>
+
+        <div class="col">
+          <!-- Simple link -->
+          <a href="./forgot">Forgot password?</a>
+        </div>
+      </div>
+
+
+
+      <button class="btn mt-3"  (click)="onSubmit()">SignIn</button>
+  </form>
+
+  <div class="text-center fs-6">
+      <a href="./signin" style="text-decoration: underline;"  >SignIn</a> or <a href="./signup" style="text-decoration: underline;">SignUp</a>
+  </div>
+</div>
+
+
+</body>
+
